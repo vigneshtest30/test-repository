@@ -1,3 +1,4 @@
+import os   #this gives access to operating system environment variables
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -8,7 +9,7 @@ from resources.store import Store, StoreList
 #from db import db
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///data.db') #if the environment variable with the DB details not found then use the default sqllite value.
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #to turn off flask sqlalchemy change tracker so that our app consumes less resources. This can be tracked directly by sqlalchemy tracker.
 app.secret_key = 'Jose'
 api = Api(app)
