@@ -13,9 +13,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #to turn off flask sqlalche
 app.secret_key = 'Jose'
 api = Api(app)
 
-@app.before_first_request
-def create_tables():  #creates data.db and all the tables under it unless they already exists before the first request comes into this app.
-    db.create_all()
+# @app.before_first_request
+# def create_tables():  #creates data.db and all the tables under it unless they already exists before the first request comes into this app.
+#     db.create_all()
 
 jwt = JWT(app,authenticate, identity)  #/auth
 
